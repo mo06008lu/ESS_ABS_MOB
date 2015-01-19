@@ -1,0 +1,27 @@
+#YWEBXX_APPROVE_ALL-approveRequests?scenarioId=YWEBXX_GENERIC_INBOX&/
+
+
+https://pmpdev01.eu.novartis.net:8443/sap/bc/ui5_ui5/sap/ywebxx_ui5_flp/shells/abap/FioriLaunchpad.html?sap-client=200&sap-language=EN 
+
+https://pmpdev01.eu.novartis.net:8443/sap/bc/ui5_ui5/sap/ywebxx_ui5_flp/shells/abap/FioriLaunchpad.html?sap-client=200&sap-language=EN#YWEBXX_APPROVE_ALL-approveRequests?scenarioId=YWEBXX_GENERIC_INBOX&/
+
+newLeave>/Detail
+<!-- 							 dateFormat="MM-dd-YYYY"  -->	
+
+<DateTimeInput
+						     id="start"
+						     visible="false"
+							 type="Date"
+							 dateFormat= 	
+							 value="{ path: 'start', 
+ 									  formatter: 'ess_abs_mob.util.Formatter.date'}"  />
+
+(this.getView().byId("idAddLeaveForm").getContent()[4]).getValue()
+
+1. Table designs (1 screen from prod access)
+2. Eclipse set up. (1 new soft and ADT ) + project view in detail (1 explorer) + link to github
+3. link to cordova and a snapshot to config xml ( 1 CLI tool )
+4. Kapsel ( 1 folders with Kapsel )
+5. Screens of to completed app ( 1 Employee in Detail , 1 Manager Detail, Creation, 1 Login Form and views on ADT and Real device  )
+6. SMP ( 1 SMP cockpit) 
+

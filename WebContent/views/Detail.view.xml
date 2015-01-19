@@ -1,0 +1,152 @@
+<core:View
+	controllerName="myess.views.Detail"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:me="sap.me"
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core"
+	xmlns:ma="sap.makit" >
+	
+	<!--  {device>/isPhone}  -->
+	<Page
+		title="{res>DetailTitle}"
+	    showNavButton="{device>/isPhone}"
+		navButtonPress="handleNavButtonPress" >
+		   <customHeader>
+      <Bar>
+        <contentMiddle>
+          <Label text="Title" />
+        </contentMiddle>
+        <contentRight>
+          <ToggleButton icon="sap-icon://edit" press="onPress" />
+        </contentRight>
+      </Bar>
+    </customHeader>
+    
+		<ObjectHeader 
+ 			title="{type_text}">
+ 	
+			 <attributes> 
+<!--  			<ObjectAttribute text="{createdby}" />
+			<ObjectAttribute text="{approver}" />
+			<ObjectAttribute text="{paid_text}" /> 		-->	 
+ 			</attributes> 
+<!--    			<firstStatus>  
+ 				<ObjectStatus 
+ 					text="{ path: 'LifecycleStatus', 
+ 							formatter: 'sap.ui.flights3.util.Formatter.statusText' }" 
+ 					state="{ path: 'LifecycleStatus', 
+ 							formatter: 'sap.ui.flights3.util.Formatter.statusState'  }" />   
+ 			</firstStatus>  -->
+ 		</ObjectHeader>
+ 		<me:Calendar
+ 			id="calendar"
+ 			monthsToDisplay="1"
+ 			dayHeight="35"
+ 			changeRange="changeRanges"
+ 		/>
+ 		  
+ 		<IconTabBar 
+ 			expanded="{device>/isNoPhone}"   width="100%" height="100%"> 
+ 		<items> 
+ 		<IconTabFilter 		
+ 			icon="sap-icon://supplier"> 
+ 			<form:SimpleForm  
+ 				minWidth="1024" > 
+ 				<core:Title text="Details" /> 
+ 				<Label text="Start"/> 
+ 				<Text text="{start}" /> 
+ 				<Label text="End"/> 
+ 				<Text text="{end}" /> 
+ 				<Label text="Created By"/> 
+ 				<Text text="{createdby}" /> 
+ 				<Label text="Approver"/> 
+ 				<Text text="{approver}" /> 
+ 				<Label text="Annual Vacations"/> 
+ 				<Text text="{annual_text}" /> 
+ 				<Label text="Paid"/> 
+ 				<Text text="{paid_text}" />
+ 			</form:SimpleForm> 
+ 			</IconTabFilter> 
+ 			
+ 			<IconTabFilter 
+ 			icon="sap-icon://travel-itinerary"> 
+ 			<form:SimpleForm  
+ 				id="SimpleFlightsForm"	
+ 				minWidth="1024" > 
+ 				<core:Title text="Flights" /> 
+				<Label text="Fldate"/> 
+ 				<Text text="{
+ 						path:'Fldate', 
+ 						formatter:'myess.util.Formatter.date' 
+				 	}"/> 		
+				<Label text="Connection ID"/> 
+ 				<Text text="{Connid}" /> 	
+ 				<Label text="Price"/> 
+ 				<Text text="{Price}" />
+ 				<Label text="Currency"/> 
+ 				<Text text="{Currency}" />
+ 				<Label text="Plane Type"/> 
+ 				<Text text="{Planetype}" /> 
+ 			</form:SimpleForm> 
+ 			</IconTabFilter> 
+ 			
+ 		<IconTabFilter 
+ 			icon="sap-icon://pie-chart"> 
+ 		  <content>
+ 		  <l:VerticalLayout
+			class="marginVerticalContent"
+			width="100%"
+			height="100%">
+				<l:content>
+					<ma:Chart id="chart" type="Pie"  width="100px" height="170px" rows="{/data/tasks}"
+ 			 			showTableView="false" showTotalValue="false" legendPosition="None">
+ 			 <ma:rows>  
+               <ma:Row>  
+                    <ma:cells>  
+                         <ma:Column name="budget" value="{budget}" />  
+                          <ma:Column name="type_text" value="{type_text}"/>  
+                    </ma:cells>  
+               </ma:Row>  
+          		</ma:rows>  
+          		<ma:columns>  
+                     <ma:Column name="budget" value="{budget}" />  
+                     <ma:Column name="type_text" value="{type_text}"/>  
+          		</ma:columns>  
+          		<ma:category>  
+               		<ma:Category column="type_text" displayName="type_text"/>  
+          		</ma:category>  
+          		<ma:values>  
+               		<ma:Value expression="budget"  displayName="budget"/>  
+          		</ma:values>  
+ 			</ma:Chart> 
+				</l:content>
+			</l:VerticalLayout>
+ 		 
+ 			 </content>
+ 		 </IconTabFilter> 
+ 		</items> 
+ 		</IconTabBar>
+
+ 	<footer> 
+  		<Bar id="manager" visible="{empType>/isManager}"> 
+ 			<contentRight> 
+ 			<Button 
+ 			    id="approve"
+ 				text="{res>ApproveButtonText}" 
+ 				type="Accept" 
+ 				icon="sap-icon://accept" 
+ 				press="handleApproveReject" /> 
+ 				
+ 			<Button 
+ 			    id="reject"
+ 				text="{res>RejectButtonText}" 
+ 				type="Reject" 
+ 				icon="sap-icon://decline" 
+ 				press="handleApproveReject" /> 
+ 			</contentRight> 
+ 		</Bar> 
+ 		</footer> 
+ 		
+	</Page>
+</core:View>

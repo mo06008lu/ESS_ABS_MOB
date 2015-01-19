@@ -1,0 +1,101 @@
+<core:View
+	controllerName="myess.views.NewLeave"
+	xmlns="sap.m"
+	xmlns:me="sap.me"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	>
+	<Page
+		title="{New Leave}"
+		showNavButton="{device>/isPhone}" 
+		navButtonPress="handleNavButtonPress" >
+		<ObjectHeader 
+ 			title="Input">
+ 		</ObjectHeader>
+		<VBox alignItems="Center" width="100%">
+		    <items>       
+		        <Label text="Use Calendar" labelFor="swCal"/>
+		 		<Switch  id="swCal" state="false" customTextOn="Yes" customTextOff="No" change="onCalSwitch">
+		     	<layoutData>
+            	<FlexItemData growFactor="1" />
+          	</layoutData>
+		 </Switch>
+		 </items>
+		</VBox>    	
+		
+		
+		<me:Calendar
+ 			id="calendar_new"
+ 			enableMultiselection="true"
+ 			selectionMode="MULTIPLE" 
+ 			monthsToDisplay="1"
+ 			dayHeight="35"
+ 		/>
+		
+			<l:Grid
+			defaultSpan="L12 M12 S12"
+			width="auto">
+			<l:content>
+				<f:SimpleForm
+					id="idAddLeaveForm"
+					minWidth="800"
+					maxContainerCols="2"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="New Leave Item"
+					labelSpanL="3"
+					labelSpanM="3"
+					emptySpanL="4"
+					emptySpanM="4"
+					columnsL="1"
+					columnsM="1"
+					class="editableForm">
+					<f:content>
+ 					<!-- Basic info -->
+					<core:Title text="{res>addLeaveTitleBasic}" />
+					<Label id="start_lbl" 
+					    	visible="false" 
+					    	text="{res>start}" 
+					    	required="true" />
+						<DatePicker valueFormat="MM-dd-YYYY" id="start" visible="false" dateValue="{newLeave>/Detail/start}" />
+						<Label id="end_lbl" text="{res>end}" required="true" />
+						<DatePicker valueFormat="MM-dd-YYYY" id="end" visible="false" dateValue="{newLeave>/Detail/end}" />
+								
+						<Label text="{res>type}" required="true" />
+						<Input type="Number" value="{newLeave>/Detail/type}" />
+						<Label text="{res>type_text}" />
+						<Input value="{newLeave>/Detail/type_text}" />
+						<Label text="{res>number}" />
+						<Input value="{newLeave>/Detail/number}" />
+						<Label text="{res>createdby}" />
+						<Input value="{newLeave>/Detail/createdby}" />
+						<Label text="{res>annual}" />
+						 <Switch  state="{newLeave>/Detail/annual}" customTextOn="Yes" customTextOff="No">
+						     <layoutData>
+            					<FlexItemData growFactor="1" />
+          					</layoutData>
+						 </Switch>
+						<Label text="{res>paid}" />
+						<Switch  state="{newLeave>/Detail/paid}" customTextOn="Yes" customTextOff="No">
+						     <layoutData>
+            					<FlexItemData growFactor="1" />
+          					</layoutData>
+						 </Switch>
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<footer> 
+		 	<Bar> 
+		       <contentRight>
+		           
+         			<ToggleButton icon="sap-icon://save" press="onSave" />
+         		    <ToggleButton icon="sap-icon://sys-cancel-2" press="handleNavButtonPress" />
+        		</contentRight>
+        
+ 			</Bar> 
+ 		</footer> 
+	</Page>
+</core:View>
+

@@ -1,0 +1,153 @@
+<core:View
+	controllerName="myess.views.Master"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core" >
+	<Page
+		title="{res>MasterTitle}" 
+		showNavButton="true"
+		navButtonPress="handleNavButtonPress" >
+		<headerContent>
+			<Button icon="sap-icon://download" tooltip="{res>export}" press="handleExport"></Button>
+		</headerContent>
+		<subHeader> 
+ 			<Bar> 
+ 				<contentLeft> 
+ 				<SearchField 
+ 					liveChange="handleSearch"
+ 					showRefreshButton="{device>/isNoTouch}" 
+ 					width="100%" > 	
+ 				</SearchField> 
+ 				</contentLeft> 
+ 			</Bar> 
+ 		</subHeader>
+ 		
+ 		<PullToRefresh
+        id="pullToRefresh"
+        visible="{device>/isTouch}"
+        refresh="handleRefresh" />
+        
+		<List 
+			id="list"
+			mode="{device>/listMode}" 
+ 			items="{/data/abscences}"
+ 			select="handleListSelect" 
+ 			delete="handleDelete"
+ 			growing="true"
+    		growingThreshold="10"
+    		busyIndicatorDelay="500"
+    		enableBusyIndicator="true">
+		<ObjectListItem 
+        	type="Active"
+        	press="handleListItemPress"
+ 			title="{type_text}"
+ 			number="{number}" 
+ 			numberUnit="Days">
+ 			<ObjectAttribute text= "{ path: 'start',
+ 			    					  formatter: 'myess.util.Formatter.date' 	
+ 			    						}" /> 
+ 			<ObjectAttribute text="{path: 'end',
+ 			    					  formatter: 'myess.util.Formatter.date' 	
+ 			    						}"/>
+ 			
+ 			<firstStatus>
+					<ObjectStatus
+						text="{
+							path: 'status',
+							formatter: 'myess.util.Formatter.statusText'
+						}"
+						state="{
+							path: 'status',
+							formatter: 'myess.util.Formatter.statusState'
+						}" />
+				</firstStatus>
+ 		</ObjectListItem> 
+ 	<swipeContent>
+    <HBox>
+        <Button 
+        text="Delete Item"
+        type="Accept"
+        tap="handleAccept" />
+        
+        <Button 
+        text="Delete Item"
+        type="Reject"
+        tap="handleDeleteTap" />
+    </HBox>
+ 	    
+    </swipeContent>
+		</List> 
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+			    
+				<Button
+					id = "display"
+					icon="sap-icon://display"
+					visible="{empType>/noManager}"
+					tooltip="{res>masterFooterDispButtonTooltip}"
+					press="onDelete" />
+				<Button
+					icon="sap-icon://delete"
+					visible="{empType>/noManager}"
+					tooltip="{res>masterFooterAddButtonTooltip}"
+					press="onDelete" />
+					
+						
+				<Button
+					id = "add"
+					icon="sap-icon://add"
+					visible="{empType>/noManager}"
+					tooltip="{res>masterFooterAddButtonTooltip}"
+					press="onCreateLeave" />
+				<Select
+					id = "groupSelect"
+					change = "handleGroup"
+					icon = "sap-icon://group-2" 
+					type = "IconOnly"
+					selectedKey = "None"
+					autoAdjustWidth = "true" >	
+					<core:Item
+						   key = "None"
+						   text = "{res>MasterGroupNone}"/>
+					<core:Item
+						   key = "type"
+						   text = "{res>Type}" />
+					<core:Item
+						   key = "status"
+						   text = "{res>Status}" />
+					</Select>
+			</Toolbar>
+		</footer>
+		
+	</Page>
+</core:View>
+ 			<!-- number="{Postcode}" --> 
+ 			<!-- numberUnit="{Agencynum}" > -->
+ 			
+ 			
+ 			<!-- 
+				<Button
+					id = "edit"
+					icon="sap-icon://edit"
+					tooltip="{res>masterFooterAddButtonTooltip}"
+					press="onCreateLeave" />
+					
+ 			<footer> 
+		 	<Bar>  	
+ 				<contentRight> 
+ 				<Button
+				text="Cancel"
+				icon="sap-icon://accept"
+				press="handleListItemPress" />
+ 				<Button
+				text="Use Template"
+				icon="sap-icon://accept"
+				press="handleListItemPress" />
+ 					<Button
+				text="New Item"
+				icon="sap-icon://accept"
+				press="handleListItemPress" />
+ 				</contentRight>
+ 			</Bar> 
+ 		</footer> 
+ 			 -->
