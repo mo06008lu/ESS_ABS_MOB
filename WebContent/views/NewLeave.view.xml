@@ -30,6 +30,7 @@
  			enableMultiselection="true"
  			selectionMode="MULTIPLE" 
  			monthsToDisplay="1"
+ 			visible="false"
  			dayHeight="35"
  		/>
 		
@@ -55,17 +56,26 @@
  					<!-- Basic info -->
 					<core:Title text="{res>addLeaveTitleBasic}" />
 					<Label id="start_lbl" 
-					    	visible="false" 
+					    	visible="true" 
 					    	text="{res>start}" 
 					    	required="true" />
-						<DatePicker valueFormat="MM-dd-YYYY" id="start" visible="false" dateValue="{newLeave>/Detail/start}" />
+						<DatePicker valueFormat="MM-dd-YYYY" id="start" visible="true" dateValue="{newLeave>/Detail/start}" />
 						<Label id="end_lbl" text="{res>end}" required="true" />
-						<DatePicker valueFormat="MM-dd-YYYY" id="end" visible="false" dateValue="{newLeave>/Detail/end}" />
+						<DatePicker valueFormat="MM-dd-YYYY" id="end" visible="true" dateValue="{newLeave>/Detail/end}" />
 								
 						<Label text="{res>type}" required="true" />
-						<Input type="Number" value="{newLeave>/Detail/type}" />
-						<Label text="{res>type_text}" />
-						<Input value="{newLeave>/Detail/type_text}" />
+						
+<!-- <Input type="Number" value="" />  -->						
+						 <Select
+						    id="type"
+          					autoAdjustWidth="true"
+         						 items="{
+            						path: 'leaveTypes>/LeaveTypes'
+          							}"
+          					change="onChange">
+          				<core:Item key="{leaveTypes>type_id}" text="{leaveTypes>type_text}" />
+          				
+        				</Select>
 						<Label text="{res>number}" />
 						<Input value="{newLeave>/Detail/number}" />
 						<Label text="{res>createdby}" />

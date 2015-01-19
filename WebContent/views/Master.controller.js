@@ -59,7 +59,7 @@ sap.ui.controller("myess.views.Master", {
 	},
 	
 	handleListItemPress: function (evt){
-		 var context = evt.getParameter("listItem").getBindingContext().getPath(); 
+		 var context = evt.getSource().getBindingContext().getPath();
 		 this.router.navTo("Detail", {id: context.charAt(context.length - 1)});
 	}, 
 	 
@@ -84,7 +84,7 @@ sap.ui.controller("myess.views.Master", {
 	 }, 
 	 
 	 onListItemPress: function (evt) {
-		 var context = evt.getParameter("listItem").getBindingContext().getPath(); 
+		 var context = evt.getSource().getBindingContext().getPath();
 		 this.router.navTo("Detail", {id: context.charAt(context.length - 1)});
      },
 	 
@@ -171,9 +171,9 @@ sap.ui.controller("myess.views.Master", {
 		 var item = evt.getParameter("selectedItem"); 
 		 var key = (item) ? item.getKey() : null; 
 		 if ("type" === key || "status" === key) { 
-			 	ess_abs_mob.util.Grouper.bundle = 
+			 	myess.util.Grouper.bundle = 
 			 	this.getView().getModel("res").getResourceBundle(); 
-			 	var grouper = ess_abs_mob.util.Grouper[key]; 
+			 	var grouper = myess.util.Grouper[key]; 
 			 	sorters.push(new sap.ui.model.Sorter(key, true, grouper)); 
 		 } 
 	 
@@ -186,7 +186,7 @@ sap.ui.controller("myess.views.Master", {
 	 handleExport: function(){
  	    var bundle = this.getView().getModel("res").getResourceBundle(); 
 	    var successMsg = bundle.getText("ExportSuccessMsg"); 
-	    sap.m.MessageToast.show(successMsg); 
+	    sap.m.MessageToast.show( this.getView().byId("list").getItems().length + " " +successMsg); 
 	 },
 	 
 	 handleNavButtonPress: function () {

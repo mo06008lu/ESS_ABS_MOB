@@ -83,7 +83,7 @@
 				<Button
 					id = "display"
 					icon="sap-icon://display"
-					visible="{empType>/noManager}"
+					visible="false"
 					tooltip="{res>masterFooterDispButtonTooltip}"
 					press="onDelete" />
 				<Button

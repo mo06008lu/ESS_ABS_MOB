@@ -17,6 +17,7 @@ sap.ui.controller("myess.views.EmployeeSelect", {
 //	onBeforeRendering: function() {
 //
 //	},
+	
 	onInit : function () {
 		this.router = sap.ui.core.UIComponent.getRouterFor(this);
 	},
@@ -26,6 +27,8 @@ sap.ui.controller("myess.views.EmployeeSelect", {
 		this.getView().getModel("empType").getData().isManager = true;
 		this.getView().getModel("empType").getData().noManager = false;
 		this.getView().getModel("empType").refresh(true); 
+// set model to undefined
+		sap.ui.getCore().setModel(undefined);
 		this.router.navTo("Master", {id: "man"});
 	},
 	
@@ -33,6 +36,7 @@ sap.ui.controller("myess.views.EmployeeSelect", {
 		this.getView().getModel("empType").getData().isManager = false;
 		this.getView().getModel("empType").getData().noManager = true;
 		this.getView().getModel("empType").refresh(true); 
+		sap.ui.getCore().setModel(undefined);
 		this.router.navTo("Master", {id: "emp"});
 	}
 /**

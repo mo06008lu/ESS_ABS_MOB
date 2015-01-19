@@ -49,15 +49,19 @@ sap.ui.controller("myess.views.NewLeave", {
 		this.getView().setModel(new sap.ui.model.json.JSONModel(), "newLeave");
 		
 		var param = evt.getParameter("arguments").id;
+		var leave;
 		if (param){
-			var leave = sap.ui.getCore().getModel().getObject("/data/abscences/" + param);
+			leave = sap.ui.getCore().getModel().getObject("/data/abscences/" + param);
 			this.initializeNewLeaveData(leave, param);
-		}else{
-		
 		}
+		this.initializeNewLeaveData(leave, param);
 		
 	},
-
+	
+	onChange: function(evt){
+		var evt = evt.getSource();
+	},
+	
 	handleNavButtonPress : function () {
 		if(this.getView().getModel("device").getData().isNoPhone){
 			this.router.myNavBack("Empty");
@@ -99,14 +103,18 @@ sap.ui.controller("myess.views.NewLeave", {
 			var oCalendar = this.getView().byId('calendar_new');
 			var aSelected = oCalendar.getSelectedDates();
 		}
+		
+		var type = this.getView().byId('type').getSelectedItem();
+		
+		
 		var mNewLeave = this.getView().getModel("newLeave").getData().Detail;
 		var data = sap.ui.getCore().getModel().getData();
 		var dates = data.data.abscences;
 		var new_abs = {
 				start: 		mNewLeave.start,
 				end:   		mNewLeave.end,
-				type:  		mNewLeave.type,
-				type_text:	mNewLeave.type_text,
+				type:  		type.type,
+				type_text:	type.getSelectedItem().getText(),
 				number:		mNewLeave.number,	
 				createdby:	mNewLeave.createdby,
 				approver:   mNewLeave.approver,

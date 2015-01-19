@@ -1,7 +1,6 @@
 <core:View
 	controllerName="myess.views.Detail"
 	xmlns="sap.m"
-	xmlns:l="sap.ui.layout"
 	xmlns:me="sap.me"
 	xmlns:form="sap.ui.layout.form" 
 	xmlns:core="sap.ui.core"
@@ -94,12 +93,12 @@
  		<IconTabFilter 
  			icon="sap-icon://pie-chart"> 
  		  <content>
- 		  <l:VerticalLayout
-			class="marginVerticalContent"
+ 		  <VBox
 			width="100%"
-			height="100%">
-				<l:content>
-					<ma:Chart id="chart" type="Pie"  width="100px" height="170px" rows="{/data/tasks}"
+			height="100%"
+			alignItems="Stretch">
+			<items>
+					<ma:Chart id="chart" type="Pie"  width="100%" height="9em" rows="{/data/tasks}"
  			 			showTableView="false" showTotalValue="false" legendPosition="None">
  			 <ma:rows>  
                <ma:Row>  
@@ -120,8 +119,8 @@
                		<ma:Value expression="budget"  displayName="budget"/>  
           		</ma:values>  
  			</ma:Chart> 
-				</l:content>
-			</l:VerticalLayout>
+			</items>
+			</VBox>
  		 
  			 </content>
  		 </IconTabFilter> 
@@ -150,3 +149,4 @@
  		
 	</Page>
 </core:View>
+<!-- 	xmlns:l="sap.ui.layout" -->

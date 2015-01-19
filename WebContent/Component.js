@@ -135,7 +135,25 @@ sap.ui.core.UIComponent.extend("myess.Component", {
 		 });
 		 empTypeModel.setDefaultBindingMode("OneWay"); 
 		 oView.setModel(empTypeModel, "empType");
-
+		 
+		 bundle = resModel.getResourceBundle(); 
+		 
+		 
+		 var leaveTypes = new sap.ui.model.json.JSONModel(
+		   {
+			   "LeaveTypes":[{
+			 type_id: 1,
+			 type_text: bundle.getText("VacationType"),
+		   },
+		   
+		    { 
+				 type_id: 2,
+				 type_text: bundle.getText("SicknessType"),
+			} ]}
+		  );
+		 leaveTypes.setDefaultBindingMode("OneWay"); 
+		 oView.setModel(leaveTypes, "leaveTypes");
+		 
 		// set device model 
 		 var deviceModel = new sap.ui.model.json.JSONModel({ 
 //		 isPhone : jQuery.device.is.phone, 
